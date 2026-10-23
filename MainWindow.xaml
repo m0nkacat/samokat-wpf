@@ -1,0 +1,14 @@
+﻿<Window x:Class="SamokatAppClean.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Курьерская служба" Height="350" Width="300"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="Клиенты" Width="200" Height="50" Click="btnClients_Click" Margin="0,5"/>
+            <Button Content="Курьеры" Width="200" Height="50" Click="btnCouriers_Click" Margin="0,5"/>
+            <Button Content="Транспорт" Width="200" Height="50" Click="btnTransport_Click" Margin="0,5"/>
+            <Button Content="Заказы" Width="200" Height="50" Click="btnOrders_Click" Margin="0,5"/>
+        </StackPanel>
+    </Grid>
+</Window>

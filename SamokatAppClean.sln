@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamokatAppClean", "SamokatAppClean.csproj", "{E7CEAB47-BCAF-45EF-A99A-0E5369A8C9D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7CEAB47-BCAF-45EF-A99A-0E5369A8C9D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7CEAB47-BCAF-45EF-A99A-0E5369A8C9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7CEAB47-BCAF-45EF-A99A-0E5369A8C9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7CEAB47-BCAF-45EF-A99A-0E5369A8C9D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {088C04F2-E47F-484A-94C7-2E5C2FECC6D6}
+	EndGlobalSection
+EndGlobal

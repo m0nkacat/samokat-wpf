@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище samokatModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="couriers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="transport_id" Type="int" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_date" Type="datetime" Nullable="false" />
+          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="courier_id" Type="int" Nullable="false" />
+          <Property Name="delivery_address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="total_weight_kg" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="transport">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="transport_name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="capacity_kg" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__couriers__transp__3C69FB99">
+          <End Role="transport" Type="Self.transport" Multiplicity="0..1" />
+          <End Role="couriers" Type="Self.couriers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="couriers">
+              <PropertyRef Name="transport_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__client_i__4316F928">
+          <End Role="clients" Type="Self.clients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__courier___440B1D61">
+          <End Role="couriers" Type="Self.couriers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="couriers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="courier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище samokatModelContainer">
+          <EntitySet Name="clients" EntityType="Self.clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="couriers" EntityType="Self.couriers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transport" EntityType="Self.transport" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__couriers__transp__3C69FB99" Association="Self.FK__couriers__transp__3C69FB99">
+            <End Role="transport" EntitySet="transport" />
+            <End Role="couriers" EntitySet="couriers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__client_i__4316F928" Association="Self.FK__orders__client_i__4316F928">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__courier___440B1D61" Association="Self.FK__orders__courier___440B1D61">
+            <End Role="couriers" EntitySet="couriers" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="samokatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__client_i__4316F928" FromRole="clients" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="couriers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="transport_id" Type="Int32" />
+          <NavigationProperty Name="transport" Relationship="Self.FK__couriers__transp__3C69FB99" FromRole="couriers" ToRole="transport" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__courier___440B1D61" FromRole="couriers" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="client_id" Type="Int32" Nullable="false" />
+          <Property Name="courier_id" Type="Int32" Nullable="false" />
+          <Property Name="delivery_address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="total_weight_kg" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <NavigationProperty Name="clients" Relationship="Self.FK__orders__client_i__4316F928" FromRole="orders" ToRole="clients" />
+          <NavigationProperty Name="couriers" Relationship="Self.FK__orders__courier___440B1D61" FromRole="orders" ToRole="couriers" />
+        </EntityType>
+        <EntityType Name="transport">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transport_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="capacity_kg" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="couriers" Relationship="Self.FK__couriers__transp__3C69FB99" FromRole="transport" ToRole="couriers" />
+        </EntityType>
+        <Association Name="FK__orders__client_i__4316F928">
+          <End Role="clients" Type="Self.clients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__couriers__transp__3C69FB99">
+          <End Role="transport" Type="Self.transport" Multiplicity="0..1" />
+          <End Role="couriers" Type="Self.couriers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="couriers">
+              <PropertyRef Name="transport_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__courier___440B1D61">
+          <End Role="couriers" Type="Self.couriers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="couriers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="courier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="samokatEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="clients" EntityType="Self.clients" />
+          <EntitySet Name="couriers" EntityType="Self.couriers" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="transport" EntityType="Self.transport" />
+          <AssociationSet Name="FK__orders__client_i__4316F928" Association="Self.FK__orders__client_i__4316F928">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__couriers__transp__3C69FB99" Association="Self.FK__couriers__transp__3C69FB99">
+            <End Role="transport" EntitySet="transport" />
+            <End Role="couriers" EntitySet="couriers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__courier___440B1D61" Association="Self.FK__orders__courier___440B1D61">
+            <End Role="couriers" EntitySet="couriers" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище samokatModelContainer" CdmEntityContainer="samokatEntities">
+          <EntitySetMapping Name="clients">
+            <EntityTypeMapping TypeName="samokatModel.clients">
+              <MappingFragment StoreEntitySet="clients">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="couriers">
+            <EntityTypeMapping TypeName="samokatModel.couriers">
+              <MappingFragment StoreEntitySet="couriers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="transport_id" ColumnName="transport_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="samokatModel.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="courier_id" ColumnName="courier_id" />
+                <ScalarProperty Name="delivery_address" ColumnName="delivery_address" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="total_weight_kg" ColumnName="total_weight_kg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transport">
+            <EntityTypeMapping TypeName="samokatModel.transport">
+              <MappingFragment StoreEntitySet="transport">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="transport_name" ColumnName="transport_name" />
+                <ScalarProperty Name="capacity_kg" ColumnName="capacity_kg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

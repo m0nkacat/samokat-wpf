@@ -1,0 +1,28 @@
+﻿<Window x:Class="SamokatAppClean.TransportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Транспорт" Height="400" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <DockPanel Margin="10">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBox Name="txtSearch" Width="250"/>
+            <Button Content="Найти" Margin="5,0" Click="btnSearch_Click"/>
+            <Button Content="На главную" Margin="20,0,0,0" Click="btnBack_Click"/>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+            <Button Content="Добавить" Width="100" Margin="5" Click="btnAdd_Click"/>
+            <Button Content="Изменить" Width="100" Margin="5" Click="btnEdit_Click"/>
+            <Button Content="Удалить" Width="100" Margin="5" Click="btnDelete_Click"/>
+        </StackPanel>
+
+        <TextBlock DockPanel.Dock="Bottom" Name="txtStatus" Foreground="Red" Margin="5" Height="25"/>
+
+        <DataGrid Name="dgTransport" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgTransport_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding transport_name}" Header="Название" Width="*"/>
+                <DataGridTextColumn Binding="{Binding capacity_kg}" Header="Грузоподъёмность (кг)" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

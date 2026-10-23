@@ -1,0 +1,30 @@
+﻿<Window x:Class="SamokatAppClean.ClientEditDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Клиент" Height="300" Width="400"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="ФИО:" Margin="5"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="txtFullName" Margin="5"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Телефон:" Margin="5"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="txtPhone" Margin="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Адрес:" Margin="5"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="txtAddress" Margin="5"/>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Сохранить" Width="80" Click="btnSave_Click" Margin="5"/>
+            <Button Content="Отмена" Width="80" Click="btnCancel_Click" Margin="5"/>
+        </StackPanel>
+        <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Name="txtError" Foreground="Red" Margin="5"/>
+    </Grid>
+</Window>
