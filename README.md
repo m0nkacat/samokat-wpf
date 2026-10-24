@@ -4,6 +4,13 @@
 
 `C#` `WPF` `.NET Framework 4.7.2` `Entity Framework 6 (Database First)` `SQL Server`
 
+<p align="center">
+  <img src="screenshots/main.png" height="300" alt="Главное меню">
+  <img src="screenshots/orders.png" height="300" alt="Заказы">
+</p>
+
+<sub>Скриншоты сделаны на демо-базе с выдуманными данными · *Screenshots use a demo database with made-up data*</sub>
+
 ## Что сделано
 - **4 раздела** с главного меню: клиенты, курьеры, транспорт, заказы
 - **Таблица (DataGrid)** в каждом разделе: добавление, изменение, удаление
